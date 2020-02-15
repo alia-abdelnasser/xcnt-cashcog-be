@@ -23,10 +23,12 @@
     "@types/express": "^4.17.2",
     "@types/express-graphql": "^0.9.0",
     "@types/graphql": "^14.5.0",
+    "api-stream": "^1.0.0",
     "express": "^4.16.4",
     "express-graphql": "^0.9.0",
     "graphql": "^14.6.0",
     "graphql-tools": "^4.0.6",
+    "prisma": "^1.34.10",
     "prisma-client-lib": "^1.34.10"
   },
   "devDependencies": {
