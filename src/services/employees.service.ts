@@ -1,4 +1,7 @@
 import { empolyeesMock } from "../mocks/empolyees.mock";
+import { getCustomRepository } from "typeorm";
+import { EmployeeRepository } from "../typeorm/employee.repository";
+import { Employee } from "../models/employee";
 
 export class EmployeesService {
 
@@ -16,6 +19,10 @@ export class EmployeesService {
             employee(uuid: String): Employee!
             employees: [Employee]
         }
+
+        extend type Mutation {
+            createEmp(uuid: String, first_name: String, last_name: String): Employee
+        }
         `;
         return typeDefs;
     }
@@ -28,5 +35,10 @@ export class EmployeesService {
         resolvers.Query.employees = () => {
             return this.employees;
         };
+
+        resolvers.Mutation.createEmp = async (_: any, inputData: any) => {
+            let employee = new Employee(inputData.uuid, inputData.first_name, inputData.last_name);
+            return await getCustomRepository(EmployeeRepository).createAndSave(employee);
+        }
     }
 }

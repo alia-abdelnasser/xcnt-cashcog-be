@@ -3,9 +3,30 @@ import graphqlHTTP from 'express-graphql';
 import { makeExecutableSchema } from 'graphql-tools';
 import { EventsService } from './services/events.service';
 import { EmployeesService } from './services/employees.service';
+import { createConnection, Connection } from "typeorm"
+import { Employee } from './models/employee';
 
 const app: express.Application = express();
 const port = 3000;
+
+
+createConnection({
+  type: "mysql",
+  host: 'localhost',
+  port: 3306,
+  username: 'root',
+  password: 'root',
+  database: 'xcnt',
+  entities: [
+    Employee
+  ],
+  synchronize: true
+}).then(async connection => {
+
+  console.log("Connected to DB");
+  connection;
+
+}).catch(error => console.log("TypeORM connection error: ", error));
 
 let typeDefs: any = [`
   type Query {
