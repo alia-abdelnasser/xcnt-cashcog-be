@@ -1,34 +1,12 @@
 import { Event } from "../models/event";
 import { eventsMock } from "../mocks/events.mock";
+import { Employee } from "../models/employee";
+import { getCustomRepository } from "typeorm";
+import { EventRepository } from "../repositories/event.repository";
 
-export class EventsService {
+export class EventsResolver {
 
     public events = eventsMock;
-
-    configTypeDefs() {
-        let typeDefs = `
-        scalar Date
-
-        type Event {
-            uuid: String
-            description: String
-            amount: Int
-            currency: String
-            status: String
-            created_at: Date
-            employee: Employee
-        } 
-
-        extend type Query {
-            event(uuid: String!): Event
-            events: [Event!]
-        }
-        
-        extend type Mutation {
-            updateEvent(uuid: String!, status: String!): Event!
-        }`;
-        return typeDefs;
-    }
 
     configResolvers(resolvers: any) {
         resolvers.Query.event = (_: any, inputData: any) => {
@@ -61,5 +39,10 @@ export class EventsService {
             event.status = inputData.status;
             return event;
         };
+
+        resolvers.Mutation.createEvent = async (_: any, inputData: any) => {
+            let event = new Event(inputData.uuid, inputData.description, inputData.created_at, inputData.amount, inputData.currency, new Employee("d", "", ""), "PENDING");
+            return await getCustomRepository(EventRepository).createAndSave(event);
+        }
     }
 }
