@@ -14,7 +14,7 @@ export const EventTypeDef =
 
     extend type Query {
         event(uuid: String!): Event
-        events(status: String, orderDir: String, startIndex: Int, pageSize: Int): [Event!]
+        events(status: String, orderBy: String, orderDir: String, startIndex: Int, pageSize: Int): [Event!]
     }
     
     extend type Mutation {

@@ -9,17 +9,22 @@ export class EventsResolver {
         };
 
         resolvers.Query.events = async (_: any, inputData: any) => {
-            const criteria = inputData ? {
-                where: inputData.status ? {
-                    status: inputData.status
-                } : {},
-                order: inputData.orderDir ? {
-                    created_at: inputData.orderDir.toUpperCase()
-                } : {},
-                skip: inputData.startIndex ? inputData.startIndex : 0,
-                take: inputData.pageSize ? inputData.pageSize : 10
+            const criteria: { [k: string]: any } = {};
+
+            criteria.where = inputData.status ? {
+                status: inputData.status
             } : {};
 
+            criteria.skip = inputData.startIndex ? inputData.startIndex : 0;
+            criteria.take = inputData.pageSize ? inputData.pageSize : 10;
+
+            criteria.order = { created_at: "ASC" };
+            if (inputData.orderBy) {
+                let orderBy: { [k: string]: any } = {};
+                orderBy[inputData.orderBy] = inputData.orderDir ? inputData.orderDir.toUpperCase() : "ASC";
+                criteria.order = orderBy;
+            }
+            
             return await getCustomRepository(EventRepository)
                 .find(criteria);
         };
