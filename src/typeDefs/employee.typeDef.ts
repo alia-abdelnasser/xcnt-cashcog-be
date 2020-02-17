@@ -7,11 +7,6 @@ export const EmployeeTypeDef =
     }
 
     extend type Query {
-        employee(uuid: String): Employee!
-        employees: [Employee]
-    }
-
-    extend type Mutation {
-        createEmp(uuid: String, first_name: String, last_name: String): Employee
+        employee(uuid: String): Employee
     }
     `;

@@ -15,12 +15,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const express_graphql_1 = __importDefault(require("express-graphql"));
 const graphql_tools_1 = require("graphql-tools");
-const events_service_1 = require("./services/events.service");
-const employees_service_1 = require("./services/employees.service");
 const typeorm_1 = require("typeorm");
 const employee_1 = require("./models/employee");
+const typeDefs_1 = require("./typeDefs/typeDefs");
+const resolvers_1 = require("./resolvers/resolvers");
+const event_1 = require("./models/event");
 const app = express_1.default();
 const port = 3000;
+//DATABASE
 typeorm_1.createConnection({
     type: "mysql",
     host: 'localhost',
@@ -28,40 +30,14 @@ typeorm_1.createConnection({
     username: 'root',
     password: 'root',
     database: 'xcnt',
-    entities: [
-        employee_1.Employee
-    ],
+    entities: [employee_1.Employee, event_1.Event],
     synchronize: true
-}).then((connection) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("Connected to DB");
-    connection;
-})).catch(error => console.log("TypeORM connection error: ", error));
-let typeDefs = [`
-  type Query {
-    xcnt: String
-  }
-     
-  type Mutation {
-    xcnt(name: String) : String
-  }
-`];
-let xcnt = 'XCNT!';
-let resolvers = {
-    Query: {
-        xcnt: () => xcnt
-    },
-    Mutation: {
-        xcnt: (_, data) => {
-            return `${xcnt} welcomes ${data.name}`;
-        }
-    }
-};
-let employeesService = new employees_service_1.EmployeesService();
-typeDefs += employeesService.configTypeDefs();
-employeesService.configResolvers(resolvers);
-let eventsService = new events_service_1.EventsService();
-typeDefs += eventsService.configTypeDefs();
-eventsService.configResolvers(resolvers);
+})
+    .then((connection) => __awaiter(void 0, void 0, void 0, function* () { console.log("Connected To DB"); }))
+    .catch(error => console.log("TypeORM connection error: ", error));
+// GRAPH_QL
+let resolvers = resolvers_1.getResolvers();
+let typeDefs = typeDefs_1.getTypeDefs();
 app.use('/graphql', express_graphql_1.default({
     schema: graphql_tools_1.makeExecutableSchema({ typeDefs, resolvers }),
     graphiql: true

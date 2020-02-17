@@ -2,7 +2,7 @@
 dist
 package-lock.json
 node_modules
+build
 .idea
 .vscode
 *.log
-build

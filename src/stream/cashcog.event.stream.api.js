@@ -37,7 +37,7 @@ module.exports = apiStream.createApi(constructorOptions => (query, done) => {
                 });
 
                 let eventSql = `INSERT INTO events 
-                (uuid, description, created_at, amount, currency, employee, status) 
+                (uuid, description, created_at, amount, currency, employeeUuid, status) 
                 VALUES ('${event.uuid}', '${event.description}', '${event.created_at}', ${event.amount}, '${event.currency}', '${event.employee.uuid}', 'PENDING')`;
 
                 dbConnection.query(eventSql, function (err, result) {

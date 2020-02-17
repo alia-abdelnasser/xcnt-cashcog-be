@@ -19,15 +19,15 @@ export class Event {
     currency: String;
 
     @ManyToOne(type => Employee)
-    @JoinColumn()
+    @JoinColumn({ name: "EmployeeUuid"})
     employee: Employee;
 
     @Column('varchar', { length: 45 })
-    status: String;
+    status: EventStatus;
 
     constructor(uuid: String, description: String, created_at: Date,
         amount: Number, currency: String, employee: Employee,
-        status: String) {
+        status: EventStatus) {
         this.uuid = uuid;
         this.description = description;
         this.created_at = created_at;
