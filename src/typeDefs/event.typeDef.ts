@@ -12,15 +12,9 @@ export const EventTypeDef =
         employee: Employee
     } 
 
-    type EventPage {
-        startIndex: Int
-        pageSize: Int
-        events: [Event]
-    }
-
     extend type Query {
         event(uuid: String!): Event
-        events(status: String, orderBy: String, orderDir: String, startIndex: Int, pageSize: Int): EventPage
+        events(status: String, orderBy: String, orderDir: String, startIndex: Int, pageSize: Int): [Event!]
     }
     
     extend type Mutation {

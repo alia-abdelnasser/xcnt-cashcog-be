@@ -24,7 +24,7 @@ export class EventsResolver {
                 orderBy[inputData.orderBy] = inputData.orderDir ? inputData.orderDir.toUpperCase() : "ASC";
                 criteria.order = orderBy;
             }
-            
+
             return await getCustomRepository(EventRepository)
                 .find(criteria);
         };
