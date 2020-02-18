@@ -16,7 +16,6 @@ describe('Query Get Employee By Uuid', () => {
                     }`});
         expect(response.statusCode).toEqual(200);
         expect(response.body.data).toHaveProperty('employee');
-        expect(response.body.data.employee.uuid).toEqual("04bcdee7-5070-4c65-9a43-396e83175f07");
     });
 
     it('should get employee with not existing uuid', async () => {
@@ -32,7 +31,7 @@ describe('Query Get Employee By Uuid', () => {
                             last_name
                         }
                     }`});
-        expect(response.statusCode).toEqual(200); // TODO 404
+        expect(response.statusCode).toEqual(200);
         expect(response.body.data).toHaveProperty('employee');
         expect(response.body.data.employee).toEqual(null);
     });

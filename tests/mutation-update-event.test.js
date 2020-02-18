@@ -52,8 +52,6 @@ describe('Mutation Update Event', () => {
                         }
                     }`});
                     expect(response.statusCode).toEqual(500); // TODO 404
-                    // expect(response.body.data).toHaveProperty('event');
-                    // expect(response.body.data.event).toEqual(null);
     });
 
     it('should update event status with invalid input key', async () => {

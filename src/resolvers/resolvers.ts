@@ -1,5 +1,5 @@
-import { EmployeesResolver } from "./employees.resolver";
-import { EventsResolver } from "./events.resolver";
+import { configEmployeesResolvers } from './employees.resolver';
+import { configEventsResolvers } from './events.resolver';
 
 export const getResolvers = () => {
     let xcnt: String = 'XCNT!';
@@ -15,8 +15,8 @@ export const getResolvers = () => {
         }
     };
 
-    new EmployeesResolver().configResolvers(resolvers);
-    new EventsResolver().configResolvers(resolvers);
+    configEmployeesResolvers(resolvers);
+    configEventsResolvers(resolvers);
 
     return resolvers;
 }

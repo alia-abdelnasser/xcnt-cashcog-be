@@ -24,6 +24,7 @@
     "@types/graphql": "^14.5.0",
     "api-stream": "^1.0.0",
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.16.4",
     "express-graphql": "^0.9.0",
     "graphql": "^14.6.0",
@@ -34,6 +35,7 @@
   },
   "devDependencies": {
     "@types/chai": "^4.2.9",
+    "@types/cors": "^2.8.6",
     "@types/express": "^4.17.2",
     "@types/mocha": "^7.0.1",
     "@types/mongoose": "^5.7.1",

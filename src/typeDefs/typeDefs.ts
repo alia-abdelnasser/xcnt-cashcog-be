@@ -1,5 +1,5 @@
-import { EmployeeTypeDef } from "./employee.typeDef";
-import { EventTypeDef } from "./event.typeDef";
+import { EmployeeTypeDef } from './employee.typeDef';
+import { EventTypeDef } from './event.typeDef';
 
 export const getTypeDefs = () => {
     return [`

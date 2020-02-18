@@ -24,7 +24,6 @@ describe('Query Get Event By Uuid', () => {
                     }`});
         expect(response.statusCode).toEqual(200);
         expect(response.body.data).toHaveProperty('event');
-        expect(response.body.data.event.uuid).toEqual("7ab2d07a-98b3-4d72-a687-35bd0ec04da8");
     });
 
     it('should get event with not existing uuid', async () => {
@@ -48,7 +47,7 @@ describe('Query Get Event By Uuid', () => {
                             }
                         }
                     }`});
-                    expect(response.statusCode).toEqual(200); // TODO 404
+                    expect(response.statusCode).toEqual(200);
                     expect(response.body.data).toHaveProperty('event');
                     expect(response.body.data.event).toEqual(null);
     });

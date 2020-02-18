@@ -1,5 +1,5 @@
-import { Entity, Column, PrimaryColumn, ManyToOne, JoinColumn } from "typeorm";
-import { Employee } from "./employee";
+import { Entity, Column, PrimaryColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Employee } from './employee';
 
 @Entity('events')
 export class Event {
@@ -19,7 +19,7 @@ export class Event {
     currency: String;
 
     @ManyToOne(type => Employee)
-    @JoinColumn({ name: "EmployeeUuid"})
+    @JoinColumn({ name: 'EmployeeUuid'})
     employee: Employee;
 
     @Column('varchar', { length: 45 })

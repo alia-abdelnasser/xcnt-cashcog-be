@@ -20,11 +20,13 @@ const employee_1 = require("./models/employee");
 const typeDefs_1 = require("./typeDefs/typeDefs");
 const resolvers_1 = require("./resolvers/resolvers");
 const event_1 = require("./models/event");
+const cors_1 = __importDefault(require("cors"));
 const app = express_1.default();
 const port = 3000;
+app.use(cors_1.default());
 //DATABASE
 typeorm_1.createConnection({
-    type: "mysql",
+    type: 'mysql',
     host: 'localhost',
     port: 3306,
     username: 'root',
@@ -33,11 +35,11 @@ typeorm_1.createConnection({
     entities: [employee_1.Employee, event_1.Event],
     synchronize: true
 })
-    .then((connection) => __awaiter(void 0, void 0, void 0, function* () { console.log("Connected To DB"); }))
-    .catch(error => console.log("TypeORM connection error: ", error));
+    .then((connection) => __awaiter(void 0, void 0, void 0, function* () { console.log('Connected To DB'); }))
+    .catch(error => console.log('TypeORM connection error: ', error));
 // GRAPH_QL
-let resolvers = resolvers_1.getResolvers();
 let typeDefs = typeDefs_1.getTypeDefs();
+let resolvers = resolvers_1.getResolvers();
 app.use('/graphql', express_graphql_1.default({
     schema: graphql_tools_1.makeExecutableSchema({ typeDefs, resolvers }),
     graphiql: true

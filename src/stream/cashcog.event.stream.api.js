@@ -4,15 +4,15 @@ var mysql = require('mysql');
 var apiURL = 'https://cashcog.xcnt.io/stream';
 
 var dbConnection = mysql.createConnection({
-    host: "127.0.0.1",
-    user: "root",
-    password: "root",
-    database: "xcnt"
+    host: '127.0.0.1',
+    user: 'root',
+    password: 'root',
+    database: 'xcnt'
 });
 
 dbConnection.connect(function (err) {
     if (err) throw err;
-    console.log("Connected!");
+    console.log('Connected!');
 });
 
 module.exports = apiStream.createApi(constructorOptions => (query, done) => {
@@ -33,7 +33,7 @@ module.exports = apiStream.createApi(constructorOptions => (query, done) => {
 
                 dbConnection.query(employeeSql, function (err, result) {
                     if (err) throw err;
-                    console.log("1 employee record inserted");
+                    console.log('1 employee record inserted');
                 });
 
                 let eventSql = `INSERT INTO events 
@@ -42,7 +42,7 @@ module.exports = apiStream.createApi(constructorOptions => (query, done) => {
 
                 dbConnection.query(eventSql, function (err, result) {
                     if (err) throw err;
-                    console.log("1 event record inserted");
+                    console.log('1 event record inserted');
                 });
             } catch (e) {
                 console.log(e);
@@ -50,7 +50,7 @@ module.exports = apiStream.createApi(constructorOptions => (query, done) => {
         });
 
         res.on('end', () => {
-            done(null, "DONE");
+            done(null, 'DONE');
             dbConnection.end();
         });
     });

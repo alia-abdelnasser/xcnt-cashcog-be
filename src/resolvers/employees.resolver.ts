@@ -1,10 +1,8 @@
-import { getCustomRepository } from "typeorm";
-import { EmployeeRepository } from "../repositories/employee.repository";
+import { getCustomRepository } from 'typeorm';
+import { EmployeeRepository } from '../repositories/employee.repository';
 
-export class EmployeesResolver {
-    configResolvers(resolvers: any) {
-        resolvers.Query.employee = async (_: any, inputData: any) => {
-            return await getCustomRepository(EmployeeRepository).findOne(inputData.uuid);
-        };
-    }
+export const configEmployeesResolvers = (resolvers: any) => {
+    resolvers.Query.employee = async (_: any, inputData: any) => {
+        return await getCustomRepository(EmployeeRepository).findOne(inputData.uuid);
+    };
 }

@@ -24,7 +24,6 @@ describe('Query Get Events', () => {
                     }`});
         expect(response.statusCode).toEqual(200);
         expect(response.body.data).toHaveProperty('events');
-        expect(response.body.data.events.length).toEqual(10);
     });
 
     it('should get PENDING events from index 5 with page size 5 sorted by amount', async () => {
@@ -54,7 +53,6 @@ describe('Query Get Events', () => {
                     }`});
         expect(response.statusCode).toEqual(200);
         expect(response.body.data).toHaveProperty('events');
-        expect(response.body.data.events.length).toEqual(4);
     });
 
     it('should get events with invalid input key', async () => {
