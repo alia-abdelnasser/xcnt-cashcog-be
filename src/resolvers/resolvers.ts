@@ -2,7 +2,7 @@ import { configEmployeesResolvers } from './employees.resolver';
 import { configEventsResolvers } from './events.resolver';
 
 export const getResolvers = () => {
-    let xcnt: String = 'XCNT!';
+    let xcnt: string = 'XCNT!';
 
     let resolvers = {
         Query: {

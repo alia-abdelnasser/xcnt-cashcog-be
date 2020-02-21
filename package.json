@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "tsc": "tsc",
-    "start": "npm run tsc && node ./build/app.js"
+    "start": "npm run tsc && node ./build/src/app.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
   "author": "Alia Qassem",
   "license": "ISC",
   "dependencies": {
+    "@types/express": "^4.17.2",
     "@types/express-graphql": "^0.9.0",
     "@types/graphql": "^14.5.0",
     "api-stream": "^1.0.0",
@@ -36,11 +37,11 @@
   "devDependencies": {
     "@types/chai": "^4.2.9",
     "@types/cors": "^2.8.6",
-    "@types/express": "^4.17.2",
     "@types/mocha": "^7.0.1",
     "@types/mongoose": "^5.7.1",
     "@types/node": "^13.7.1",
     "@types/supertest": "^2.0.8",
+    "eslint": "^6.8.0",
     "tslint": "^5.14.0",
     "typescript": "^3.3.4000"
   },

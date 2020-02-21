@@ -1,5 +1,3 @@
 enum EventStatus {
-    PENDING,
-    APPROVED,
-    DECLINED
+    PENDING, APPROVED, DECLINED
 }

@@ -4,29 +4,33 @@ import { Employee } from './employee';
 @Entity('events')
 export class Event {
     @PrimaryColumn('varchar', { length: 60 })
-    uuid: String;
+    uuid: string;
 
     @Column('varchar', { length: 1000 })
-    description: String;
+    description: string;
 
     @Column('date')
     created_at: Date;
 
     @Column('int')
-    amount: Number;
+    amount: number;
 
     @Column('varchar', { length: 45 })
-    currency: String;
+    currency: string;
 
     @ManyToOne(type => Employee)
-    @JoinColumn({ name: 'EmployeeUuid'})
-    employee: Employee;
+    @JoinColumn()
+    employee!: Employee;
 
     @Column('varchar', { length: 45 })
     status: EventStatus;
 
-    constructor(uuid: String, description: String, created_at: Date,
-        amount: Number, currency: String, employee: Employee,
+    constructor(uuid: string,
+        description: string,
+        created_at: Date,
+        amount: number,
+        currency: string,
+        employee: Employee,
         status: EventStatus) {
         this.uuid = uuid;
         this.description = description;
