@@ -9,7 +9,7 @@ export class Event {
     @Column('varchar', { length: 1000 })
     description: string;
 
-    @Column('date')
+    @Column('datetime')
     created_at: Date;
 
     @Column('int')

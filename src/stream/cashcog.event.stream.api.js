@@ -26,7 +26,7 @@ module.exports = apiStream.createApi(constructorOptions => (query, done) => {
         res.on('data', data => {
             try {
                 let event = JSON.parse(data.toString())
-
+                
                 let employeeSql = `INSERT IGNORE INTO employees 
                 (uuid, first_name, last_name) 
                 VALUES ('${event.employee.uuid}', '${event.employee.first_name}', '${event.employee.last_name}')`;
