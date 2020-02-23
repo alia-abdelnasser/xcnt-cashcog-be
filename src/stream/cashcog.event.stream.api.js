@@ -10,7 +10,7 @@ var dbConnection = mysql.createConnection({
     database: 'xcnt'
 });
 
-dbConnection.connect(function (err) {
+dbConnection.connect(function (error) {
     if (error) {
         console.log(error);
         throw error;

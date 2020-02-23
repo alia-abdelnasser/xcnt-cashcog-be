@@ -4,9 +4,8 @@
   "description": "Backend for expenses management system",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
     "tsc": "tsc",
-    "stream": "node ./src/stream/cashcog.event.stream.js",
+    "stream": "npm run tsc && node ./src/stream/cashcog.event.stream.js",
     "start": "npm run tsc && node ./build/src/app.js",
     "all": "npm-run-all --parallel stream start"
   },
