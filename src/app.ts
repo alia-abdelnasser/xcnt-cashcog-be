@@ -24,8 +24,12 @@ createConnection({
   entities: [Employee, Event],
   synchronize: true
 })
-  .then(async connection => { console.log('Connected To DB'); })
-  .catch(error => console.log('TypeORM connection error: ', error));
+  .then(async connection => {
+    console.log('Connected To Database');
+  })
+  .catch(error => {
+    console.log('TypeORM connection error: ', error);
+  });
 
 // GRAPH_QL
 let typeDefs = getTypeDefs();
@@ -40,4 +44,6 @@ app.use(
   })
 );
 
-app.listen(port, () => console.log(`XCNT Graphql API listening on port ${port}!`));
+app.listen(port, () => {
+  console.log(`XCNT Graphql API listening on port ${port}!`);
+});

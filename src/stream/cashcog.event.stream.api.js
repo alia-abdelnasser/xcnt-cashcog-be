@@ -11,8 +11,11 @@ var dbConnection = mysql.createConnection({
 });
 
 dbConnection.connect(function (err) {
-    if (err) throw err;
-    console.log('Connected!');
+    if (error) {
+        console.log(error);
+        throw error;
+    }
+    console.log('Connected To Database');
 });
 
 module.exports = apiStream.createApi(constructorOptions => (query, done) => {
@@ -26,7 +29,7 @@ module.exports = apiStream.createApi(constructorOptions => (query, done) => {
         res.on('data', data => {
             try {
                 let event = JSON.parse(data.toString())
-                
+
                 let employeeSql = `INSERT IGNORE INTO employees 
                 (uuid, first_name, last_name) 
                 VALUES ('${event.employee.uuid}', '${event.employee.first_name}', '${event.employee.last_name}')`;
@@ -44,8 +47,8 @@ module.exports = apiStream.createApi(constructorOptions => (query, done) => {
                     if (err) throw err;
                     console.log('1 event record inserted');
                 });
-            } catch (e) {
-                console.log(e);
+            } catch (error) {
+                console.log(error);
             }
         });
 

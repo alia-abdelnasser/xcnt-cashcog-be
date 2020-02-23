@@ -41,7 +41,8 @@ export const configEventsResolvers = (resolvers: any) => {
 
         await getCustomRepository(EventRepository)
             .update({ uuid: inputData.uuid }, { status: inputData.status });
+
         return await getCustomRepository(EventRepository)
-            .findOne(inputData.uuid);
+            .findOne(inputData.uuid, { relations: ['employee'] });
     };
 }
